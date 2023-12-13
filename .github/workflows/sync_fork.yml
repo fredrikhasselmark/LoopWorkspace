@@ -1,4 +1,4 @@
-name: 5. Sync Fork
+name: X. Sync Fork
 run-name: Sync Fork (${{ github.ref_name }})
 on:
   workflow_dispatch:
