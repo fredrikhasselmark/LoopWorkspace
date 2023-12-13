@@ -1,0 +1,37 @@
+name: 5. Sync Fork
+run-name: Sync Fork (${{ github.ref_name }})
+on:
+  workflow_dispatch:
+  
+  ## Remove the "#" sign from the beginning of the line below to get automated builds on push (code changes in your repository)
+  #push:
+
+env:
+  UPSTREAM_REPO: LoopKit/LoopWorkspace
+  UPSTREAM_BRANCH: ${{ github.ref_name }} # branch on upstream repository to sync from (replace with specific branch name if needed)
+  TARGET_BRANCH: ${{ github.ref_name }} # target branch on fork to be kept in sync, and target branch on upstream to be kept alive (replace with specific branch name if needed)
+
+jobs:
+  
+  # Syncs with upstream repository
+  sync_fork_to_latest:
+    runs-on: ubuntu-latest
+    name: Sync local fork with upstream
+    
+    steps:
+
+      - name: Checkout Repo for syncing
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAT }}
+          ref: ${{ env.TARGET_BRANCH }}
+      
+      - name: Sync upstream changes
+        id: sync
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+        with:
+          target_sync_branch: ${{ env.TARGET_BRANCH }}
+          shallow_since: 6 months ago
+          target_repo_token: ${{ secrets.GH_PAT }}
+          upstream_sync_branch: ${{ env.UPSTREAM_BRANCH }}
+          upstream_sync_repo: ${{ env.UPSTREAM_REPO }}
