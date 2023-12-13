@@ -8,6 +8,6 @@ jobs:
     uses: ./.github/workflows/sync_fork.yml 
     
   build:
+    needs: sync
     uses: ./.github/workflows/build_loop.yml
     secrets: inherit
-    needs: sync
