@@ -1,10 +1,6 @@
 name: X. Sync Fork
 run-name: Sync Fork (${{ github.ref_name }})
-on:
-  workflow_dispatch:
-  
-  ## Remove the "#" sign from the beginning of the line below to get automated builds on push (code changes in your repository)
-  #push:
+on: [workflow_call, workflow_dispatch]
 
 env:
   UPSTREAM_REPO: LoopKit/LoopWorkspace
