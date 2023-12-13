@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  sync:
+  syncing:
     uses: ./.github/workflows/sync_fork.yml
     secrets: inherit
     
-  build:
+  building:
     needs: sync
     uses: ./.github/workflows/build_loop.yml
     secrets: inherit
