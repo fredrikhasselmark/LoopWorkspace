@@ -9,6 +9,6 @@ jobs:
     secrets: inherit
     
   building:
-    needs: sync
+    needs: syncing
     uses: ./.github/workflows/build_loop.yml
     secrets: inherit
