@@ -11,10 +11,6 @@ on:
     #- cron: '0 17 1 */2 *' # Runs at 17:00 UTC on the 1st in Jan, Mar, May, Jul, Sep and Nov.
 
 jobs:
-  secrets:
-    uses: ./.github/workflows/validate_secrets.yml
-    secrets: inherit
   build:
     uses: ./.github/workflows/build_loop.yml
-    needs: secrets
     secrets: inherit
