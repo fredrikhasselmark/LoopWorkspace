@@ -5,7 +5,8 @@ on:
 
 jobs:
   sync:
-    uses: ./.github/workflows/sync_fork.yml 
+    uses: ./.github/workflows/sync_fork.yml
+    secrets: inherit
     
   build:
     needs: sync
